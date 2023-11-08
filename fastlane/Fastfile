@@ -2,7 +2,7 @@ platform :ios do
   lane :distribute do
       setup_ci
 
-      match()
+      match(readonly: true)
 
       resign(
         ipa: ENV["IPA_PATH"],

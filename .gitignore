@@ -23,3 +23,6 @@ match
 
 # generated fastlane readme
 fastlane/README.md
+
+# ruby gems
+vendor
