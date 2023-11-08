@@ -22,5 +22,7 @@ jobs:
         env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
         run: |
+          fastlane match --readonly > match
           export IPA_PATH=$(find *.ipa)
+          export SIGNING_IDENTITY=$(cat match | grep "Signing Identity" | cut -d "'" -f 2)
           fastlane distribute
