@@ -2,9 +2,8 @@
 
 Repo to automate the distribution of [uYouPlusExtra](https://github.com/arichorn/uYouPlusExtra) to [Firebase App Distribution](https://firebase.google.com/docs/app-distribution) using [fastlane](https://fastlane.tools)
 
-The action checks for updates every 24 hours and will distribute the latest build if there is a new version
-
 ## How?
+
 1. Fork the repo
 2. Create a Firebase project and enable App Distribution
 3. Add an iOS app to the project
@@ -18,3 +17,9 @@ The action checks for updates every 24 hours and will distribute the latest buil
    2. `FIREBASE_APP_ID` - The Firebase app ID
    3. `GC_BUCKET_NAME` - The name of the storage bucket
    4. `BUNDLE_ID` - The bundle ID of the re-signed app
+
+## When?
+
+The action checks for updates every 24 hours and will distribute the latest build if there is a new version
+
+The version check and distribution actions can also be manually triggered
