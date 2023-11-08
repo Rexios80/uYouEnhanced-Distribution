@@ -22,8 +22,10 @@ jobs:
       - name: Fastlane
         env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+          GC_BUCKET_NAME: ${{ secrets.GC_BUCKET_NAME }}
+          BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
         run: |
-          fastlane match --readonly
+          bundle exec fastlane match --readonly > match
           export IPA_PATH=$(find *.ipa)
           export SIGNING_IDENTITY=$(cat match | grep "Certificate Name" | cut -d "|" -f 4 | xargs)
           export PROFILE_UUID=$(cat match | grep "Profile UUID" | cut -d "|" -f 4 | xargs)
