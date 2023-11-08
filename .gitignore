@@ -20,3 +20,6 @@ gc_keys.json
 
 # match output
 match
+
+# generated fastlane readme
+fastlane/README.md
