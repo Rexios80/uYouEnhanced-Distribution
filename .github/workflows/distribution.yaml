@@ -1,0 +1,24 @@
+name: Distribution
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types:
+      - distribute
+
+jobs:
+  distribute:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Fetch IPA
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: echo latest | gh release download $1 -R arichorn/uYouPlusExtra -p "*.ipa"
+      - name: Retrieve Firebase App Distribution Service Account Key
+        run: echo ${{ secrets.FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_KEY }} > firebase_app_distribution_service_account_key.json
+      - name: Fastlane
+        env:
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+        run: fastlane distribute

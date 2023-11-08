@@ -1,12 +1,9 @@
 name: Version Check
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
-  workflow_dispatch:
-
-env:
-  GH_TOKEN: ${{ github.token }}
 
 jobs:
   check-version:
@@ -14,8 +11,19 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
-      - run: gh release view --repo arichorn/uYouPlusExtra --json tagName -q .tagName > latest
-      - uses: stefanzweifel/git-auto-commit-action@v5.0.0
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Fetch latest release tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release view --repo arichorn/uYouPlusExtra --json tagName -q .tagName > latest
+      - name: Commit if changed
+        id: auto-commit-action
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Update latest version
+      - name: Trigger distribution
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          event-type: distribute
