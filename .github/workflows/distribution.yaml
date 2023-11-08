@@ -19,11 +19,6 @@ jobs:
       - name: Retrieve Firebase App Distribution Service Account Key
         run: |
           echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}" | base64 -d > gc_keys.json
-      - name: Setup ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.2.2
-          bundler-cache: true
       - name: Fastlane
         env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
