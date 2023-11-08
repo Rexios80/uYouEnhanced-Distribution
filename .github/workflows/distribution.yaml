@@ -26,7 +26,6 @@ jobs:
           BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
         run: |
           bundle install
-          bundle exec fastlane run setup_ci
           bundle exec fastlane match --readonly > match
           cat match
           export IPA_PATH=$(find *.ipa)

@@ -1,5 +1,9 @@
 platform :ios do
   lane :distribute do
+      setup_ci
+
+      match()
+
       resign(
         ipa: ENV["IPA_PATH"],
         signing_identity: ENV["SIGNING_IDENTITY"],
