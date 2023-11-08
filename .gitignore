@@ -14,3 +14,6 @@
 
 # IPA files
 *.ipa
+
+# Service account
+gc_keys.json

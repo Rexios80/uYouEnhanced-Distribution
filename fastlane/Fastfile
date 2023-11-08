@@ -1,0 +1,17 @@
+platform :ios do
+  lane :distribute do
+      setup_ci if ENV["CI"]
+
+      match(type: "adhoc", readonly: true)
+
+      resign(
+        ipa: ENV["IPA_PATH"],
+        signing_identity: ENV["SIGNING_IDENTITY"],
+      )
+
+      release = firebase_app_distribution(
+          app: ENV["FIREBASE_APP_ID"],
+          service_credentials_file: "gc_keys.json",
+      )
+  end
+end
