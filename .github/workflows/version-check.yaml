@@ -1,3 +1,5 @@
+name: Version Check
+
 on:
   schedule:
     - cron: "0 0 * * *"
@@ -8,7 +10,6 @@ env:
 
 jobs:
   check-version:
-    name: Version Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
