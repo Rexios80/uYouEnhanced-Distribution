@@ -28,6 +28,7 @@ jobs:
           bundle install
           bundle exec fastlane run setup_ci
           bundle exec fastlane match --readonly > match
+          cat match
           export IPA_PATH=$(find *.ipa)
           export SIGNING_IDENTITY=$(cat match | grep "Certificate Name" | cut -d "|" -f 4 | xargs)
           export PROFILE_UUID=$(cat match | grep "Profile UUID" | cut -d "|" -f 4 | xargs)
