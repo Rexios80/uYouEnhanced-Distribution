@@ -19,13 +19,17 @@ jobs:
       - name: Retrieve Firebase App Distribution Service Account Key
         run: |
           echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}" | base64 -d > gc_keys.json
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
       - name: Fastlane
         env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
           GC_BUCKET_NAME: ${{ secrets.GC_BUCKET_NAME }}
           BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
         run: |
-          bundle install
+          fastlane run setup_ci
           bundle exec fastlane match --readonly > match
           export IPA_PATH=$(find *.ipa)
           export SIGNING_IDENTITY=$(cat match | grep "Certificate Name" | cut -d "|" -f 4 | xargs)
