@@ -14,7 +14,7 @@ The action checks for updates every 24 hours and will distribute the latest buil
 7. Click `Grant Access` on the bucket page and give the `Storage Admin` role to the service account email address you created earlier
 8. Add `team_id("your_team_id")` to the `Matchfile` (the CLI selector is bugged) and run `fastlane match`
 9. Create the following repo secrets:
-   1. `FIREBASE_SERVICE_ACCOUNT_KEY` - The contents of the json key file
+   1. `FIREBASE_SERVICE_ACCOUNT_KEY` - Base 64 encoded json key file (`key.jon | base64 -o output.txt`)
    2. `FIREBASE_APP_ID` - The Firebase app ID
    3. `GC_BUCKET_NAME` - The name of the storage bucket
    4. `BUNDLE_ID` - The bundle ID of the re-signed app
