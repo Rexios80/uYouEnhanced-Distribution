@@ -27,5 +27,8 @@ fastlane/README.md
 # ruby gems
 vendor
 
-# Gemfile.lock since it's it's arm only for some reason
+# Gemfile.lock since it's arm only for some reason
 Gemfile.lock
+
+# .env
+.env
