@@ -10,7 +10,9 @@ platform :ios do
         provisioning_profile: {
           "*" => ENV["HOME"] + "/Library/MobileDevice/Provisioning Profiles/" + ENV["PROFILE_UUID"] + ".mobileprovision"
         },
-        display_name: "uYouPlusExtra",
+        display_name: "uYouEnhanced",
+        bundle_id: ENV["BUNDLE_ID"],
+        use_app_entitlements: true,
       )
 
       release = firebase_app_distribution(

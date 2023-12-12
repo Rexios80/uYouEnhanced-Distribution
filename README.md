@@ -1,6 +1,6 @@
 ## What?
 
-Repo to automate the distribution of [uYouPlusExtra](https://github.com/arichorn/uYouPlusExtra) to [Firebase App Distribution](https://firebase.google.com/docs/app-distribution) using [fastlane](https://fastlane.tools)
+Repo to automate the distribution of [uYouEnhanced](https://github.com/arichorn/uYouEnhanced) to [Firebase App Distribution](https://firebase.google.com/docs/app-distribution) using [fastlane](https://fastlane.tools)
 
 ## How?
 
@@ -12,7 +12,7 @@ Repo to automate the distribution of [uYouPlusExtra](https://github.com/arichorn
 6. Create and download a private json key for the service account
 7. Create a Standard Class storage bucket for your fastlane certificates and provisioning profiles here: https://console.cloud.google.com/storage/browser
 8. Click `Grant Access` on the bucket page and give the `Storage Admin` role to the service account email address you created earlier
-9. Add `team_id("your_team_id")` to the `Matchfile` (the CLI selector is bugged) and run `fastlane match`
+9. Create a `.env` file based on `.env.template`, run `source .env`, then run `fastlane match`
 10. Create the following repo secrets:
     - `FIREBASE_SERVICE_ACCOUNT_KEY` - Base 64 encoded json key file (`cat key.json | base64 -o output.txt`)
     - `FIREBASE_APP_ID` - The Firebase app ID

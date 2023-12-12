@@ -15,7 +15,7 @@ jobs:
       - name: Fetch IPA
         env:
           GH_TOKEN: ${{ github.token }}
-        run: cat latest | gh release download $1 -R arichorn/uYouPlusExtra -p "*.ipa"
+        run: cat latest | gh release download $1 -R arichorn/uYouEnhanced -p "*.ipa"
       - name: Retrieve Firebase App Distribution Service Account Key
         run: |
           echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}" | base64 -d > gc_keys.json
